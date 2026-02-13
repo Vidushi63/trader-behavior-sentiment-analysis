@@ -1,51 +1,36 @@
-Trader Performance vs. Market Sentiment Analysis
-Project for Primetrade.ai Data Science Internship Author: Vidushi Singh
+# Trader Performance vs. Market Sentiment Analysis
+**Project Submission: Junior Data Scientist Intern Assignment** **Author:** Vidushi Singh
 
-1. Project Overview
-This project analyzes the relationship between market sentiment (Bitcoin Fear & Greed Index) and actual trader performance on the Hyperliquid exchange. The goal is to identify behavioral shifts in traders and provide data-backed strategy recommendations to improve profitability.
+---
 
-2. Methodology
-Data Acquisition: Integrated two datasets: historical_data.csv (Hyperliquid trades) and fear_greed_index.csv (Sentiment data).
+## 📌 Project Overview
+This project investigates the correlation between the **Bitcoin Fear & Greed Index** and trader performance data from the **Hyperliquid** exchange. The objective was to identify behavioral biases and propose data-driven strategies to optimize trading outcomes.
 
-Data Cleaning: - Resolved Unix timestamp issues by converting millisecond integers to normalized datetime objects.
+## 🛠️ Methodology
+1. **Data Integration:** Cleaned and merged `historical_data.csv` and `fear_greed_index.csv`.
+2. **Date Alignment:** Handled Unix timestamps (milliseconds) and normalized them to align with daily sentiment classifications.
+3. **Segmentation:** Grouped traders into **Frequent** (active/pro) and **Infrequent** (retail/occasional) segments based on trade counts.
+4. **Metric Calculation:** Developed logic for Win Rates, PnL analysis, and Average Position Sizing.
 
-Handled missing values and duplicates to ensure accurate daily alignment.
+## 📊 Key Insights (Task B)
+* **Performance Sensitivity:** Win rates peak for frequent traders during **Extreme Greed (49.7%)**, but drop significantly during **Neutral (29.8%)** phases.
+* **The "Size-Up" Bias:** Traders tend to increase risk when emotions are high. Average position size jumps to **$5,660** in Extreme Greed, nearly double the **$3,058** average during Neutral days.
+* **Segment Vulnerability:** **Infrequent traders** are highly successful in Neutral markets (65.6% win rate) but struggle during Extreme Greed (7.8% win rate), suggesting they are often "trapped" by high-volatility momentum shifts.
 
-Feature Engineering: - Created a is_win metric to identify profitable trades.
+## 💡 Actionable Strategies (Task C)
 
-Segmented traders into Frequent (above average trade counts) and Infrequent groups to isolate behavior patterns.
+### **Strategy 1: The "Greed Circuit Breaker"**
+* **Target:** Infrequent Traders.
+* **Rule:** Reduce capital allocation by **90%** or halt trading when the Fear & Greed Index exceeds 75.
+* **Reasoning:** Historical data shows this group provides exit liquidity during extreme optimism, leading to a win rate drop of over 50%.
 
-3. Key Insights (Task B)
-Based on the analysis of thousands of trades, the following insights were discovered:
+### **Strategy 2: The "Size Standardization" Protocol**
+* **Target:** Frequent Traders.
+* **Rule:** Cap position sizes at **$3,000** regardless of sentiment.
+* **Reasoning:** Increasing size during "Fear" or "Greed" periods did not result in a higher win rate but significantly increased total drawdown risk.
 
-Performance Sensitivity: Win rates fluctuate significantly with sentiment. Frequent traders achieve their highest win rate (~49.7%) during Extreme Greed, while their performance drops during Neutral markets (~29.8%).
+---
 
-Emotional Sizing: Traders exhibit "Emotional Sizing." The average position size nearly doubles during Extreme Greed ($5,660) compared to Neutral days ($3,058), indicating that traders chase momentum with higher risk.
-
-Segment Failure: Infrequent traders are highly successful in Neutral markets (65.6% win rate) but fail catastrophically during Extreme Greed (7.8% win rate), suggesting they are often caught on the wrong side of rapid market expansions.
-
-4. Actionable Output & Strategies (Task C)
-Based on the win-rate drops observed, I propose the following two strategy "Rules of Thumb":
-
-Strategy 1: The "Greed Circuit Breaker"
-Target: Infrequent/Retail Segment.
-
-Rule: When the Fear & Greed Index enters the "Extreme Greed" zone (above 75), traders in this segment should stop trading or reduce position sizes by 90%.
-
-Reasoning: Data shows this group's win rate drops below 10% during these periods, indicating they are likely providing exit liquidity for larger players.
-
-Strategy 2: The "Size-Standardization" Protocol
-Target: Frequent Traders.
-
-Rule: Cap maximum position size to the "Neutral" market average ($3,000) regardless of sentiment.
-
-Reasoning: Frequent traders currently increase their risk to ~$5,200 during Fear days, yet their win rate remains sub-50%. Standardizing size reduces total drawdown without significantly impacting the win-rate potential.
-
-5. Technical Stack
-Python: Primary analysis language.
-
-Pandas: Data manipulation and cleaning.
-
-Matplotlib/Seaborn: Data visualization.
-
-Jupyter Notebook: Interactive development environment.
+## 🚀 Technical Stack
+* **Python** (Pandas, Matplotlib, Seaborn)
+* **Jupyter Notebook** (Kaggle Environment)
